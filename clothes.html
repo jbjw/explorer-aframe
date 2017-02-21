@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>A-Frame Ball Throw</title>
+		<meta name="description" content="A-Frame Ball Throw">
+		<script src="clothesdb.js"></script>
+		<script src="https://aframe.io/releases/0.4.0/aframe.js"></script>
+
+
+		<script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.2.2/dist/aframe-extras.js"></script>
+		<script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v1.2.0/dist/aframe-physics-system.js"></script>
+
+		<script src="https://rawgit.com/ngokevin/kframe/master/components/text/dist/aframe-text-component.js"></script>
+
+		<script src="https://rawgit.com/bryik/aframe-terrain-model-component/master/dist/aframe-terrain-model-component.js"></script>
+
+		<script src="https://rawgit.com/takahirox/aframe-outline/master/build/aframe-outline.min.js"></script>
+
+		<script src="https://rawgit.com/jujunjun110/aframe-crawling-cursor/master/dist/aframe-crawling-cursor.js"></script>
+		<script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.js"></script>
+		<script src="https://rawgit.com/bryik/aframe-vive-cursor-component/master/dist/aframe-vive-cursor-component.js"></script>
+
+		<script src="https://rawgit.com/ngokevin/kframe/master/components/sun-sky/dist/aframe-sun-sky.js"></script>
+
+		<script src="https://rawgit.com/spite/THREE.DecalGeometry/master/src/THREE.DecalGeometry.js"></script>
+
+		<script src="https://unpkg.com/aframe-layout-component@4.0.1/dist/aframe-layout-component.min.js"></script>
+
+		<script src="https://rawgit.com/ngokevin/kframe/master/components/look-at/dist/aframe-look-at-component.js"></script>
+
+		<script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.js"></script>
+
+		<script src="clothes-pre.js"></script>
+
+		<style media="screen" type="text/css">
+
+		</style>
+	</head>
+	<body>
+		<!-- outline="thickness: 0.003" -->
+
+		<a-scene
+			outline="thickness: 0.003"
+			stats
+			physics="gravity: -1.6; debug: false"
+			antialias="true">
+			<a-assets>
+				<a-asset-item id="table-obj" src="models/obj/table/Modern Table.obj"></a-asset-item>
+				<a-asset-item id="table-mtl" src="models/obj/table/Modern Table.mtl"></a-asset-item>
+
+				<a-asset-item id="flower-obj" src="models/obj/flower/topfpflanze_final.obj"></a-asset-item>
+				<a-asset-item id="flower-mtl" src="models/obj/flower/topfpflanze_final.mtl"></a-asset-item>
+
+				<a-asset-item id="mountains-obj" src="models/obj/mountains/mountains.obj"></a-asset-item>
+
+				<!-- <a-asset-item id="controller-obj" src="models/obj/vive-controller/vr_controller_vive_1_5.obj"></a-asset-item> -->
+
+				<a-asset-item id="plant-obj" src="models/obj/plant/house plant.obj"></a-asset-item>
+				<a-asset-item id="plant-mtl" src="models/obj/plant/house plant.mtl"></a-asset-item>
+
+				<a-asset-item id="emerald-obj" src="models/obj/emerald.obj"></a-asset-item>
+
+				<a-asset-item id="tree-obj" src="models/obj/tree.obj"></a-asset-item>
+
+				<a-asset-item id="floor-obj" src="models/obj/floor.obj"></a-asset-item>
+
+				<img id="wood" src="images/wood.jpg">
+				<img id="dirt" src="images/dirt.jpg">
+				<img id="sunflower" src="images/sunflower.jpg">
+				<img id="sky" src="images/sky.jpg">
+
+				<a-asset-item id="helvetikerRegularFont" src="fonts/helvetiker_regular.typeface.json"></a-asset-item>
+				<a-asset-item id="helvetikerBoldFont" src="fonts/helvetiker_bold.typeface.json"></a-asset-item>
+				<a-asset-item id="optimerRegularFont" src="fonts/optimer_regular.typeface.json"></a-asset-item>
+				<a-asset-item id="optimerBoldFont" src="fonts/optimer_bold.typeface.json"></a-asset-item>
+				<a-asset-item id="gentilisRegularFont" src="fonts/gentilis_regular.typeface.json"></a-asset-item>
+				<a-asset-item id="gentilisBoldFont" src="fonts/gentilis_bold.typeface.json"></a-asset-item>
+
+				<!-- <a-mixin id="boldFont" text="font: #optimerBoldFont"></a-mixin> -->
+
+				<!-- <a-mixin id="controller"
+					controller-loaded
+					sphere-collider="objects: .cube, .transformer"></a-mixin> -->
+				<a-mixin id="controller-loaded" static-body="shape: sphere; sphereRadius: 0.02;"></a-mixin>
+				<a-mixin id="controller"
+					controller-loaded
+					sphere-collider="objects: .throwable"
+					grab></a-mixin>
+
+			</a-assets>
+
+
+			<a-entity id="table" obj-model="obj: #table-obj; mtl: #table-mtl" material="color: blue;" position="-2 0.1 0" scale="0.2 0.2 0.2"></a-entity>
+			<!-- <a-entity id="flower" obj-model="obj: #flower-obj; mtl: #flower-mtl" position="-2 2 0" scale="0.1 0.1 0.1"></a-entity> -->
+
+			<!-- <a-entity id="mountains" obj-model="obj: #mountains-obj;" position="-2 2 0"></a-entity> -->
+
+			<!-- <a-entity id="controller" obj-model="obj: #controller-obj;" position="-2 2 0"></a-entity> -->
+			<a-entity id="plant" obj-model="obj: #plant-obj; mtl: #plant-mtl" position="-2 0.8 0.8" scale="0.0006 0.0006 0.0006"></a-entity>
+			<!-- <a-entity id="emerald" obj-model="obj: #emerald-obj;" position="-2 2 0" scale="0.1 0.1 0.1"></a-entity> -->
+			<!-- <a-entity id="tree" obj-model="obj: #tree-obj;" position="-2 0.4 0" scale="1.2 1.2 1.2"></a-entity> -->
+
+			<!-- <a-entity id="floor" obj-model="obj: #floor-obj;" position="-2 2 0"></a-entity> -->
+
+			<a-entity id="anchor"></a-entity>
+
+			<a-entity id="collection" layout="type: circle; radius: 4" position="0 1 0">
+
+			</a-entity>
+
+			<!-- <a-animation attribute="rotation" from="0 0 0" to="0 360 0" dur="5000"
+				repeat="indefinite" easing="linear"></a-animation> -->
+
+			<a-cursor id="my-cursor"
+				position="0 0 0"
+				geometry="primitive: ring"
+				scale="0.1 0.1 0.1"
+				material="color: red; shader: flat">
+			</a-cursor>
+
+			<a-camera raycaster="objects: .lookable" crawling-cursor="target: #my-cursor"></a-camera>
+
+
+			<!-- Ground -->
+			<a-plane id="ground" static-body rotation="-90 0 0" width="10" height="10" material="src: #wood; repeat: 10 10" color="white" position="0 0 0"></a-plane>
+
+			<!-- Player -->
+			<!-- <a-entity camera look-controls wasd-controls></a-entity> -->
+			<!-- collisionEntity: #ground -->
+			<a-entity id="leftController" teleport-controls="type: line; collisionEntity: #ground" vive-controls="hand: left" mixin="controller" color="blue"></a-entity>
+			<a-entity id="rightController" vive-cursor="objects: [selectable]" vive-controls="hand: right" mixin="controller" color="red"></a-entity>
+
+			<!-- <a-entity id="leftController" static-body="shape: sphere; sphereRadius: 0.02;" vive-controls="hand: left" sphere-collider="objects: .throwable" grab></a-entity>
+			<a-entity id="rightController" static-body="shape: sphere; sphereRadius: 0.02;" vive-controls="hand: right" sphere-collider="objects: .throwable" grab></a-entity> -->
+
+			<a-sphere class="throwable" dynamic-body position="0.7 1 0" radius="0.1" color="red"></a-sphere>
+			<a-box class="throwable" dynamic-body position="0 1 0.7" scale="0.1 0.1 0.1" color="green"></a-box>
+			<a-cone class="throwable" dynamic-body position="-0.7 1 0" radius-bottom="0.2" radius-top="0.1" height="0.1" color="blue"></a-cone>
+
+			<!-- Stack of boxes (generated beforehand with D3) -->
+			<!-- <a-entity id="boxStack" position="2 1.1 0" rotation="" scale="" visible="">
+
+			</a-entity> -->
+
+			<!--table -->
+			<a-box id="table" static-body position="0 0.25 3" width="2" height="0.1" depth="2" color="grey" material="src: #wood"></a-box>
+			<a-entity id="display" card="name: placeholder; location: test;" position="0 2 3" rotation="0 180 0"></a-entity>
+
+			<!-- Sky -->
+			<!-- <a-sky color="#ECECEC"></a-sky> -->
+			<!-- <a-sun-sky id="sun" sun-position-setter> -->
+			<!-- <a-sun-sky id="sun" sun-position-setter>
+				<a-entity id="orbit">
+					<a-animation attribute="rotation" from="0 0 0" to="180 360 0" dur="5000"
+						repeat="indefinite" easing="linear"></a-animation>
+				</a-entity>
+			</a-sun-sky> -->
+			<a-sky src="#sky" radius="1000"></a-sky>
+		</a-scene>
+
+		<script src="clothes.js"></script>
+	</body>
+</html>
